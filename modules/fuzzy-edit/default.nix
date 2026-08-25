@@ -38,14 +38,15 @@
             perSystem @ {
                 config,
                 pkgs,
+                self',
                 ...
-            }:
-                let cfg = config.programs.rgv; in
+            }: nixos @ {...}:
+                let cfg = self'.flake.nixosModules.fuzzy-edit; in
             {
                 # services.foo.package = perSystem.config.packages.foo;
 
                 config = {
-                    environment.systemPackages = lib.mkIf cfg.enable [
+                    environment.systemPackages = lib.mkIf cfg.programs.rgv.enable [
                         perSystem.config.packages.ripgrep-fuzzy-edit
                     ];
                 };
@@ -59,17 +60,17 @@
                             description = "The name of the command to run";
                         };
                     };
-                    # programs.fdv = {
-                    #     enable = lib.mkEnableOption "fdv";
-                    #     name = lib.mkOption {
-                    #         type = lib.types.string;
-                    #         default = "fdv";
-                    #         description = "The name of the command to run";
-                    #     };
-                    #     #package = lib.mkOption {
-                    #     #defaultText = lib.literalMD "`packages.default` from the foo flake";
-                    #     #};
-                    # };
+                    programs.fdv = {
+                        enable = lib.mkEnableOption "fdv";
+                        name = lib.mkOption {
+                            type = lib.types.string;
+                            default = "fdv";
+                            description = "The name of the command to run";
+                        };
+                        #package = lib.mkOption {
+                        #defaultText = lib.literalMD "`packages.default` from the foo flake";
+                        #};
+                    };
                 };
             }
         );

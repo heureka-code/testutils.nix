@@ -39,11 +39,13 @@
                 config,
                 pkgs,
                 ...
-            }: nixos @ {...}: {
+            }: nixos @ {...}:
+                let cfg = perSystem.config.nixosModules.fuzzy-edit; in
+            {
                 # services.foo.package = perSystem.config.packages.foo;
 
                 config = {
-                    environment.systemPackages = lib.mkIf perSystem.config.programs.rgv.enable [
+                    environment.systemPackages = lib.mkIf cfg.programs.rgv.enable [
                         perSystem.config.packages.ripgrep-fuzzy-edit
                     ];
                 };

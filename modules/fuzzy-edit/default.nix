@@ -50,13 +50,13 @@
                         #lib.mkIf cfg.programs.rgv.enable [
                         perSystem.config.packages.ripgrep-fuzzy-edit
 
-                        pkgs.writeShellApplication
+                        (pkgs.writeShellApplication
                         {
                             name = "degub-nix-info";
                             text = ''
                                 echo "${builtins.concatStringsSep ", " (builtins.attrNames config)}"
                             '';
-                        }
+                        })
                     ];
                 };
 

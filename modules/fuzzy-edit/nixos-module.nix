@@ -1,10 +1,14 @@
 {
-    lib,
     config,
-    pkgs,
-    withSystem,
+    lib,
     ...
 }: {
+    config = {
+        environment.systemPackages = lib.mkIf config.programs.rgv.enable [
+            config.packages.ripgrep-fuzzy-edit
+        ];
+    };
+
     options = {
         programs.rgv = {
             enable = lib.mkEnableOption "rgv";
@@ -26,11 +30,4 @@
             #};
         };
     };
-    config = withSystem pkgs.stdenv.hostPlatform.system ({ config, ... }:
-        lib.mkIf config.programs.rgv.enable {
-            environment.systemPackages = [
-               config.packages.ripgrep-fuzzy-edit
-            ];
-        }
-    );
 }

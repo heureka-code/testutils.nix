@@ -1,10 +1,8 @@
-{...}: {
-    flake.nixosModules.fuzzy-edit = {...}: {
-        imports = [./nixos-module.nix];
-    };
+{lib, ...}: {
     perSystem = {
         self',
         pkgs,
+        config,
         ...
     }: {
         # Allows definition of system-specific attributes
@@ -30,5 +28,8 @@
             ripgrep-fuzzy-edit = pkgs.callPackage ./rgv.nix {};
             fd-fuzzy-edit = pkgs.callPackage ./fdv.nix {};
         };
+    };
+    flake = {
+        nixosModules.fuzzy-edit = import ./nixos-module.nix;
     };
 }

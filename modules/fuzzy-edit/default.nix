@@ -1,8 +1,11 @@
-{lib, ...}: {
+{
+    lib,
+    moduleWithSystem,
+    ...
+}: {
     perSystem = {
         self',
         pkgs,
-        config,
         ...
     }: {
         # Allows definition of system-specific attributes
@@ -29,7 +32,17 @@
             fd-fuzzy-edit = pkgs.callPackage ./fdv.nix {};
         };
     };
+
     flake = {
-        nixosModules.fuzzy-edit = import ./nixos-module.nix;
+        nixosModules.fuzzy-edit = moduleWithSystem (
+            perSystem @ {
+                config,
+                pkgs,
+                ...
+            }: nixos @ {...}: {
+                # services.foo.package = perSystem.config.packages.foo;
+                imports = [./nixos-module.nix];
+            }
+        );
     };
 }

@@ -2,8 +2,7 @@
     config,
     lib,
     ...
-}:
-{
+}: {
     config = {
         environment.systemPackages = lib.mkIf config.programs.rgv.enable [
             config.packages.ripgrep-fuzzy-edit

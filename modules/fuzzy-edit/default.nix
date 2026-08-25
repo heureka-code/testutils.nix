@@ -40,7 +40,7 @@
                 pkgs,
                 ...
             }: nixos @ {...}:
-                let cfg = perSystem.config.nixosModules.fuzzy-edit; in
+                let cfg = perSystem.config.flake.nixosModules.fuzzy-edit; in
             {
                 # services.foo.package = perSystem.config.packages.foo;
 

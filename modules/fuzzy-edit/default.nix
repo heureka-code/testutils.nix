@@ -41,7 +41,7 @@
                 self',
                 ...
             }: nixos @ {...}:
-                let cfg = self'.flake.nixosModules.fuzzy-edit; in
+                let cfg = self'.nixosModules.fuzzy-edit; in
             {
                 # services.foo.package = perSystem.config.packages.foo;
 

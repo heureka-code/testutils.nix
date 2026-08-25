@@ -1,5 +1,5 @@
+{perSystem}:
 {
-    perSystem,
     config,
     lib,
     ...

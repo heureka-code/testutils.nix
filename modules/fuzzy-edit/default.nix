@@ -41,7 +41,7 @@
                 ...
             }: nixos @ {...}: {
                 # services.foo.package = perSystem.config.packages.foo;
-                imports = [./nixos-module.nix];
+                imports = [./nixos-module.nix perSystem];
             }
         );
     };

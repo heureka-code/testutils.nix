@@ -3,11 +3,10 @@
     lib,
     ...
 }:
-{perSystem}:
 {
     config = {
         environment.systemPackages = lib.mkIf config.programs.rgv.enable [
-            perSystem.config.packages.ripgrep-fuzzy-edit
+            config.packages.ripgrep-fuzzy-edit
         ];
     };
 

@@ -40,14 +40,23 @@
                 pkgs,
                 self',
                 ...
-            }: nixos @ {...}:
-                let cfg = self'.nixosModules.fuzzy-edit; in
-            {
+            }: nixos @ {...}: let
+                cfg = self'.nixosModules.fuzzy-edit;
+            in {
                 # services.foo.package = perSystem.config.packages.foo;
 
                 config = {
-                    environment.systemPackages = lib.mkIf cfg.programs.rgv.enable [
+                    environment.systemPackages = [
+                        #lib.mkIf cfg.programs.rgv.enable [
                         perSystem.config.packages.ripgrep-fuzzy-edit
+
+                        pkgs.writeShellApplication
+                        {
+                            name = "degub-nix-info";
+                            text = ''
+                                echo "${builtins.concatStringsSep ", " (builtins.attrNames config)}"
+                            '';
+                        }
                     ];
                 };
 

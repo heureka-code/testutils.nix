@@ -96,4 +96,15 @@ in {
         };
         options = optionDefinitions config;
     };
+
+    flake.nixosModules.fuzzy-edit = {
+        config,
+        pkgs,
+        ...
+    }: {
+        config = {
+            environment.systemPackages = enabledPackages config pkgs;
+        };
+        options = optionDefinitions config;
+    };
 }

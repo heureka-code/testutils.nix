@@ -46,7 +46,22 @@
                 excludeGlobs = lib.mkOption {
                     type = lib.types.listOf lib.types.str;
                     description = "A list of globs that should be used for '-E ???' flags to fd";
-                    default = ["*.pdf" "*.PDF" "*.mp4" "*.mp3" "*.odt" "*.docx"];
+                    default = [
+                        # media
+                        "*.[mM][pP]4"
+                        "*.[mM][pP]3"
+                        "*.[mM][kK][vV]"
+                        "*.[wW][aA][vV]"
+                        # images
+                        "*.[jJ][pP][eE]?[gG]"
+                        "*.[pP][nN][gG]"
+                        # documents
+                        "*.[pP][dD][fF]"
+                        "*.[oO][dD][tT]"
+                        "*.[oO][dD][sS]"
+                        "*.[dD][oO][cC][xX]?"
+                        "*.[xX][lL][sS][xX]?"
+                    ];
                 };
                 #package = lib.mkOption {
                 #defaultText = lib.literalMD "`packages.default` from the foo flake";

@@ -1,5 +1,9 @@
 {
-    flake.nixosModules.fuzzy-edit = {lib, ...}: {
+    flake.nixosModules.fuzzy-edit = {
+        lib,
+        config,
+        ...
+    }: {
         options = {
             programs.rgv = {
                 enable = lib.mkEnableOption "rgv";
@@ -8,18 +12,31 @@
                     default = "rgv";
                     description = "The name of the command to run";
                 };
+                help = lib.mkOption {
+                    type = lib.types.string;
+                    description = "The help text fzf should show during selection";
+                    default = "Select matching line to open file in ${config.programs.rgv.editor}";
+                };
+                editor = lib.mkOption {
+                    type = lib.types.string;
+                    description = "The command to run as editor";
+                    default = "$EDITOR";
+                };
+
+                # fzfArgs ? "",
+                # rgArgs ? "",
             };
-            # programs.fdv = {
-            #     enable = lib.mkEnableOption "fdv";
-            #     name = lib.mkOption {
-            #         type = lib.types.string;
-            #         default = "fdv";
-            #         description = "The name of the command to run";
-            #     };
-            #     #package = lib.mkOption {
-            #     #defaultText = lib.literalMD "`packages.default` from the foo flake";
-            #     #};
-            # };
+            programs.fdv = {
+                enable = lib.mkEnableOption "fdv";
+                name = lib.mkOption {
+                    type = lib.types.string;
+                    default = "fdv";
+                    description = "The name of the command to run";
+                };
+                #package = lib.mkOption {
+                #defaultText = lib.literalMD "`packages.default` from the foo flake";
+                #};
+            };
         };
     };
 }

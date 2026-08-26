@@ -1,4 +1,4 @@
-{moduleWithSystem, ...}: {
+{...}: {
     perSystem = {
         self',
         pkgs,
@@ -28,7 +28,7 @@
             fd-fuzzy-edit = pkgs.callPackage ./fdv.nix {};
         };
     };
-    imports = [./config.nix ./options.nix ./home.nix];
+    imports = [./module.nix];
 
     # flake = {
     #     nixosModules.fuzzy-edit = moduleWithSystem (

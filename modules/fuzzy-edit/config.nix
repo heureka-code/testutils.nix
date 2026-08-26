@@ -34,14 +34,4 @@ in {
             inherit pkgs config;
         };
     };
-    flake.homeModules.fuzzy-edit = {
-        pkgs,
-        config,
-        ...
-    }: {
-        home.packages = enabled {
-            cfg = config.programs;
-            inherit pkgs config;
-        };
-    };
 }

@@ -74,12 +74,4 @@ in {
     }: {
         options = opt {inherit lib config;};
     };
-
-    flake.homeModules.fuzzy-edit = {
-        lib,
-        config,
-        ...
-    }: {
-        options = opt {inherit lib config;};
-    };
 }

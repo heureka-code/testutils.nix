@@ -28,7 +28,7 @@
             fd-fuzzy-edit = pkgs.callPackage ./fdv.nix {};
         };
     };
-    imports = [./config.nix ./options.nix];
+    imports = [./config.nix ./options.nix ./home.nix];
 
     # flake = {
     #     nixosModules.fuzzy-edit = moduleWithSystem (

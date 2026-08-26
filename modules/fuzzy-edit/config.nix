@@ -8,7 +8,8 @@
         config,
         ...
     }: let
-        cfg = config.programs;
+        cfg.rgv = config.programs.rg-fuzzy-edit;
+        cfg.fdv = config.programs.fd-fuzzy-edit;
     in {
         environment.systemPackages = lib.mkIf cfg.rgv.enable [
             (self.packages.${pkgs.stdenv.hostPlatform.system}.rg-fuzzy-edit.override {

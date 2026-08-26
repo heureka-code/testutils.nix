@@ -14,7 +14,7 @@
     xargs = "${pkgs.findutils}/bin/xargs";
     mktemp = "${pkgs.mktemp}/bin/mktemp";
     rm = "${pkgs.coreutils}/bin/rm";
-    exclude = lib.map (n: "-E \"${n}\"") excludeGlobs;
+    exclude = builtins.concatStringsSep " " (lib.map (n: "-E \"${n}\"") excludeGlobs);
 in
     pkgs.writeShellApplication {
         inherit name;

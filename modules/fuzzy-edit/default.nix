@@ -1,8 +1,4 @@
-{
-    lib,
-    moduleWithSystem,
-    ...
-}: {
+{moduleWithSystem, ...}: {
     perSystem = {
         self',
         pkgs,
@@ -32,49 +28,18 @@
             fd-fuzzy-edit = pkgs.callPackage ./fdv.nix {};
         };
     };
+    imports = [./config.nix ./options.nix];
 
-    flake = {
-        nixosModules.fuzzy-edit = moduleWithSystem (
-            perSystem @ {
-                config,
-                pkgs,
-                self',
-                ...
-            }: nixos @ {...}: let
-                cfg = config.programs;
-            in {
-
-                config = {
-                    # accessing cfg.rgv doesn't work
-                    environment.systemPackages = lib.mkIf cfg.rgv.enable [
-                        # this works
-                        perSystem.config.packages.ripgrep-fuzzy-edit
-                    ];
-                };
-
-                # where do these options end?
-                options = {
-                    programs.rgv = {
-                        enable = lib.mkEnableOption "rgv";
-                        name = lib.mkOption {
-                            type = lib.types.string;
-                            default = "rgv";
-                            description = "The name of the command to run";
-                        };
-                    };
-                    # programs.fdv = {
-                    #     enable = lib.mkEnableOption "fdv";
-                    #     name = lib.mkOption {
-                    #         type = lib.types.string;
-                    #         default = "fdv";
-                    #         description = "The name of the command to run";
-                    #     };
-                    #     #package = lib.mkOption {
-                    #     #defaultText = lib.literalMD "`packages.default` from the foo flake";
-                    #     #};
-                    # };
-                };
-            }
-        );
-    };
+    # flake = {
+    #     nixosModules.fuzzy-edit = moduleWithSystem (
+    #         perSystem @ {
+    #             config,
+    #             pkgs,
+    #             self',
+    #             ...
+    #         }: nixos @ {...}: let
+    #         in {
+    #         }
+    #     );
+    # };
 }

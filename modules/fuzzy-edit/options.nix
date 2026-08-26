@@ -1,5 +1,5 @@
 {
-    flake.nixosModules.base = {lib, ...}: {
+    flake.nixosModules.fuzzy-edit = {lib, ...}: {
         options = {
             programs.rgv = {
                 enable = lib.mkEnableOption "rgv";

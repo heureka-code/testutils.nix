@@ -3,7 +3,7 @@
     lib,
     ...
 }: {
-    flake.nixosModules.general = {
+    flake.nixosModules.fuzzy-edit = {
         pkgs,
         config,
         ...

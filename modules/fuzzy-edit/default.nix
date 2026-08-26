@@ -17,14 +17,14 @@
         devShells = {
             fuzzy-edit = pkgs.mkShell {
                 nativeBuildInputs = [
-                    self'.packages.ripgrep-fuzzy-edit
+                    self'.packages.rg-fuzzy-edit
                     self'.packages.fd-fuzzy-edit
                 ];
             };
         };
 
         packages = {
-            ripgrep-fuzzy-edit = pkgs.callPackage ./rgv.nix {};
+            rg-fuzzy-edit = pkgs.callPackage ./rgv.nix {};
             fd-fuzzy-edit = pkgs.callPackage ./fdv.nix {};
         };
     };

@@ -5,7 +5,7 @@
         ...
     }: {
         options = {
-            programs.rgv = {
+            programs.rg-fuzzy-edit = {
                 enable = lib.mkEnableOption "rgv";
                 name = lib.mkOption {
                     type = lib.types.str;
@@ -26,12 +26,22 @@
                 # fzfArgs ? "",
                 # rgArgs ? "",
             };
-            programs.fdv = {
+            programs.fd-fuzzy-edit = {
                 enable = lib.mkEnableOption "fdv";
                 name = lib.mkOption {
                     type = lib.types.str;
                     default = "fdv";
                     description = "The name of the command to run";
+                };
+                help = lib.mkOption {
+                    type = lib.types.str;
+                    description = "The help text fzf should show during selection";
+                    default = "Select matching file to open in ${config.programs.fdv.editor}";
+                };
+                editor = lib.mkOption {
+                    type = lib.types.str;
+                    description = "The command to run as editor";
+                    default = "$EDITOR";
                 };
                 #package = lib.mkOption {
                 #defaultText = lib.literalMD "`packages.default` from the foo flake";

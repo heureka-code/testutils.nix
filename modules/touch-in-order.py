@@ -23,7 +23,8 @@ def input_paths_from_stdin():
     try:
         args = [Path(line.rstrip("\n")) for line in sys.stdin.readlines()]
     except KeyboardInterrupt:
-        print("Keyboard interrupt while reading paths from stdin", file=sys.stderr)
+        msg = "Keyboard interrupt while reading paths from stdin"
+        print(msg, file=sys.stderr)
         sys.exit(1)
     check_only_dirs(args)
     return args
@@ -62,7 +63,8 @@ def main_parallel(paths, *, sleep_duration: float = 0.5):
 
 parser = argparse.ArgumentParser(
     prog="touch-in-order",
-    description="Process files of directory in order and update modification time with 'touch'",
+    description="Process files of directory in order and"
+    + " update modification time with 'touch'",
 )
 
 if __name__ == "__main__":
@@ -75,13 +77,15 @@ if __name__ == "__main__":
     parser.add_argument(
         "-",
         "--stdin",
-        help="Read additional directories line by line from stdin, '-' notation can only be used before or after all 'directories'",
+        help="Read additional directories line by line from stdin, "
+        + "'-' notation can only be used before or after all 'directories'",
         action="store_true",
     )
     parser.add_argument(
         "-s",
         "--sleep",
-        help="Sleep time between touching two consecutive files in seconds, default=0.5",
+        help="Sleep time between touching two consecutive files in seconds, "
+        + "default=0.5",
         type=float,
         default=0.5,
     )
@@ -94,7 +98,8 @@ if __name__ == "__main__":
         paths.extend(input_paths_from_stdin())
     elif len(paths) == 0:
         parser.print_help()
-        print("No directories in cli arguments and stdin flag not set", file=sys.stderr)
+        msg = "No directories in cli arguments and stdin flag not set"
+        print(msg, file=sys.stderr)
         sys.exit(2)
 
     if args.parallel:

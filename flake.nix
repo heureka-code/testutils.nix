@@ -4,7 +4,6 @@
     inputs = {
         flake-parts.url = "github:hercules-ci/flake-parts";
         nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-        flake-parts.inputs.nixpkgs.follows = "nixpkgs";
     };
 
     outputs = inputs @ {flake-parts, ...}:
@@ -17,6 +16,8 @@
                 #   3. Add here: foo.flakeModule
                 ./modules/fuzzy-edit
                 ./modules/touch-in-order.nix
+                ./modules/bundle-git-repos.nix
+                ./modules/utils-shell.nix
             ];
             systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin"];
             perSystem = {

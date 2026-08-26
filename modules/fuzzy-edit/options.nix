@@ -15,7 +15,7 @@
                 help = lib.mkOption {
                     type = lib.types.str;
                     description = "The help text fzf should show during selection";
-                    default = "Select matching line to open file in ${config.programs.rgv.editor}";
+                    default = "Select matching line to open file in ${config.programs.rg-fuzzy-edit.editor}";
                 };
                 editor = lib.mkOption {
                     type = lib.types.str;
@@ -36,7 +36,7 @@
                 help = lib.mkOption {
                     type = lib.types.str;
                     description = "The help text fzf should show during selection";
-                    default = "Select matching file to open in ${config.programs.fdv.editor}";
+                    default = "Select matching file to open in ${config.programs.fd-fuzzy-edit.editor}";
                 };
                 editor = lib.mkOption {
                     type = lib.types.str;

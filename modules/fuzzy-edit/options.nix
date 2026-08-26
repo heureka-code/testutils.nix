@@ -8,17 +8,17 @@
             programs.rgv = {
                 enable = lib.mkEnableOption "rgv";
                 name = lib.mkOption {
-                    type = lib.types.string;
+                    type = lib.types.str;
                     default = "rgv";
                     description = "The name of the command to run";
                 };
                 help = lib.mkOption {
-                    type = lib.types.string;
+                    type = lib.types.str;
                     description = "The help text fzf should show during selection";
                     default = "Select matching line to open file in ${config.programs.rgv.editor}";
                 };
                 editor = lib.mkOption {
-                    type = lib.types.string;
+                    type = lib.types.str;
                     description = "The command to run as editor";
                     default = "$EDITOR";
                 };
@@ -29,7 +29,7 @@
             programs.fdv = {
                 enable = lib.mkEnableOption "fdv";
                 name = lib.mkOption {
-                    type = lib.types.string;
+                    type = lib.types.str;
                     default = "fdv";
                     description = "The name of the command to run";
                 };

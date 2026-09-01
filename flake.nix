@@ -14,6 +14,7 @@
                 #   1. Add foo to inputs
                 #   2. Add foo as a parameter to the outputs function
                 #   3. Add here: foo.flakeModule
+                inputs.flake-parts.flakeModules.easyOverlay
                 ./modules/fuzzy-edit
                 ./modules/touch-in-order.nix
                 ./modules/bundle-git-repos.nix
@@ -21,10 +22,10 @@
             ];
             systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin"];
             perSystem = {
-                # config,
+                config,
                 # self',
                 # inputs',
-                # pkgs,
+                pkgs,
                 # system,
                 ...
             }: {
@@ -33,6 +34,12 @@
                 # system.
 
                 # Equivalent to  inputs'.nixpkgs.legacyPackages.hello;
+
+                overlayAttrs = {
+                    inherit (config.packages) bundle-git-repos fd-fuzzy-edit rg-fuzzy-edit touch-in-order;
+                };
+
+                formatter = pkgs.alejandra;
             };
             flake = {
                 # The usual flake attributes can be defined here, including system-
